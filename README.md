@@ -16,7 +16,7 @@ Fear no more, CI/CD pipelines automate all this stuff for you. Just trigger the 
 
 ## Why Dozer?
 
-Dozer, unlike most CI/CD solutions, can be run be independently set up on your local machine. You can easily test your deployment pipeline locally before copying it to a cloud-based CI/CD solution (or running your tested Dozer pipeline on your build server).
+[Dozer](https://github.com/kasp1/Dozer), unlike most CI/CD solutions, can be run be independently set up on your local machine. You can easily test your deployment pipeline locally before copying it to a cloud-based CI/CD solution (or running your tested Dozer pipeline on your build server).
 
 Also, if you are building your CI/CD pipeline with another runner than Dozer, you can feel free to copy any scripts from this repository, and use them there, or just use this repository as learning resource.
 
