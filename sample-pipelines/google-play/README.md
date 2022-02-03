@@ -103,6 +103,8 @@ git commit -m "feat: added a sniper rifle to the game"
 
 You can either use the Unreal Editor to make such commit messages, or alternatively, you can use a command line tool for making semantic commits called *Commitizen*. After installing this tool, you effectively gain a new Git command. Instead of running `git commit -m "message"`, you run `git cz`, which fires up a wizard guiding you through making a semantic commit message.
 
+[Why you will love semantic versioning with Git?](https://github.com/kasp1/dozer-pipelines#versioning-and-changelogs)
+
 ### Getting *Commitizen*
 ```
 npm install -g commitizen
@@ -178,7 +180,7 @@ You will be guided to create an access key for your service account, which can b
 From now on, every time you will want to deploy a version of your app to the Google Play *internal* testing branch (from where you can later publish it to the *alpha*, *beta*, and *production* branches.), you can simply run the following command in your project's root:
 
 ```
-dozer CI\deploy.yaml --gui
+dozer CI\shared\sample-pipelines\google-play\deploy.yaml --gui
 ```
 
 The `--gui` part will also start a graphical interface showing you the progress of the build. Typically you want to start GUI on your workstation but on your build server you will probably want to omit `--gui`.

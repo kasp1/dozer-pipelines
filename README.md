@@ -1,5 +1,15 @@
 # Continuous Deployment Pipelines (CI/CD) with Dozer
 
+- [Continuous Deployment Pipelines (CI/CD) with Dozer](#continuous-deployment-pipelines-cicd-with-dozer)
+  - [Are you new to CI/CD?](#are-you-new-to-cicd)
+  - [Why Dozer?](#why-dozer)
+  - [How to use this repo? (and Contribute?)](#how-to-use-this-repo-and-contribute)
+  - [Versioning and Changelogs](#versioning-and-changelogs)
+  - [Support and Troubleshooting](#support-and-troubleshooting)
+- [Available Scripts and Pipelines](#available-scripts-and-pipelines)
+  - [Unreal Engine CI/CD Pipelines](#unreal-engine-cicd-pipelines)
+  - [Discord Tools](#discord-tools)
+
 ## Are you new to CI/CD?
 
 Continuous deployment pipelines are sets of scripts and tools helping you get your project from your workstation, or version control system, to somewhere your target audience can reach it.
