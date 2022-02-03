@@ -1,0 +1,68 @@
+
+steps:
+#
+# Build
+#
+- displayName: Set Variables
+  command: CI\vars.bat
+
+- displayName: Get Current Version
+  command: git pull
+
+- displayName: NPM Install
+  command: npm i
+
+- displayName: Semantic Release
+  command: npx semantic-release --no-ci --debug
+
+- displayName: Generate Release ID
+  command: node CI/shared/tools/generate-release-number.js
+
+- displayName: Update Project Version
+  command: node CI/update-project-config.js
+
+- displayName: Update Android Version
+  command: node CI/update-engine-config.js
+
+- displayName: Update Android Version Code
+  command: node CI/shared/tools/update-android-version-code.js
+
+- displayName: Copy Keystore
+  command: copy .\CI\*.keystore .\Build\Android\
+
+- displayName: Delete Previous Builds
+  command: del /S /Q Distribution\*
+
+- displayName: Build Game Android
+  command: %CI_UE_HOME%\Engine\Build\BatchFiles\RunUAT.bat
+    -ScriptsForProject=%cd%/%CI_UE_UPROJECT%
+    BuildCookRun
+    -project=%cd%/%CI_UE_UPROJECT%
+    -noP4
+    -clientconfig=Shipping
+    -serverconfig=Shipping
+    -nocompile
+    -nocompileeditor
+    -installed
+    -utf8output
+    -targetplatform=Android
+    -cookflavor=Multi
+    -build
+    -cook
+    -map=
+    -unversionedcookedcontent
+    -pak
+    -createreleaseversion=
+    -distribution
+    -compressed
+    -prereqs
+    -stage
+    -archive
+    -archivedirectory=%cd%/Distribution
+    -package
+    -nodebuginfo
+    -target=FamilyGames
+
+- displayName: Publish Google Play Internal
+  command: node CI/shared/tools/upload-android-build.js
+

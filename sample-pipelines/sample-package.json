@@ -1,0 +1,35 @@
+{
+  "dependencies": {
+    "axios": "^0.21.1",
+    "basic-ftp": "^4.6.6",
+    "conventional-changelog-atom": "^2.0.8",
+    "recursive-readdir-sync": "^1.0.6",
+    "sha1-file": "^3.0.0",
+    "xml2json": "^0.12.0"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^5.0.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "semantic-release": "^17.4.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "type": "module",
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      [
+        "./CI/shared/tools/semantic-release-env-version.cjs",
+        {
+          "varName": "CI_VERSION",
+          "setOnlyOnRelease": false
+        }
+      ]
+    ]
+  }
+}
