@@ -26,7 +26,7 @@ Clone/unzip everything under `yourProjectRoot/CI/shared`.
 * `shared/sample-pipelines` contains sample pipelines.
 * `shared/tools` contains the scripts these pipelines use.
 
-When you decide you want to alter any pipeline or script for your specific purpose you could copy it from `CI/shared` to `CI` and use it from there.
+When you decide you want to alter any pipeline or script for your specific purpose you should copy it from `CI/shared` to `CI` and use it from there.
 
 If you want to make any changes to the scripts or pipelines that you would like to share with others, you should keep them under `CI/shared` and create a pull request to this repository when you are ready.
 
@@ -56,13 +56,15 @@ You can also try searching in the issues. Chances are somebody already faced the
 
 ...or come to Discord: https://discord.gg/JvXm7peT
 
+Please star this repository if you find it helpful.
+
 # Available Scripts and Pipelines
 
 ## Unreal Engine CI/CD Pipelines
 
 * [Unreal Engine to Microsoft Store]([sample-pipelines/google-play](https://forums.unrealengine.com/t/publishing-an-unreal-engine-project-to-microsoft-store/149141)) (possibly uses an outdated Dozer yaml format)
 * [Unreal Engine to Google Play](sample-pipelines/google-play)
-* [Unreal Engine to Steam](sample-pipelines/google-play)
+* [Unreal Engine to Steam](sample-pipelines/steam)
 
 ## Discord Tools
 * [Sending Messages to a Discord Channel]() (TBD)
