@@ -22,13 +22,23 @@ steps:
   command: node CI/shared/tools/unreal/find-uproject.js
 
 - displayName: Update Project Version
-  command: node CI/update-project-config.js
+  command: node CI/shared/tools/replace-in-file.js
+    Config/DefaultGame.ini
+    "^\W*ProjectVersion=.+$"
+    "ProjectVersion=###CI_VERSION###"
 
 - displayName: Update Android Version
-  command: node CI/update-engine-config.js
+  command: node CI/shared/tools/replace-in-file.js
+    Config/DefaultEngine.ini
+    "^\W*VersionDisplayName=.+$"
+    "VersionDisplayName=###CI_VERSION###"
 
 - displayName: Update Android Version Code
   command: node CI/shared/tools/update-android-version-code.js
+  command: node CI/shared/tools/replace-in-file.js
+    Config/DefaultEngine.ini
+    "^\W*StoreVersion=.+$"
+    "StoreVersion=###CI_RELEASE_ID###"
 
 - displayName: Copy Keystore
   command: copy .\CI\*.keystore .\Build\Android\

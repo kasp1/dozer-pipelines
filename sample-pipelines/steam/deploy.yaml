@@ -19,7 +19,10 @@ steps:
   command: node CI/shared/tools/unreal/find-uproject.js
 
 - displayName: Update Project Version
-  command: node CI/update-ue-config.js
+  command: node CI/shared/tools/replace-in-file.js
+    Config/DefaultGame.ini
+    "^\W*ProjectVersion=.+$"
+    "ProjectVersion=###CI_VERSION###"
 
 - displayName: Replace Dev Steam ID
   command: node CI/shared/tools/unreal/swap-steam-app-id.js
