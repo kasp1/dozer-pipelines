@@ -143,7 +143,6 @@ The pipeline needs to know some specific info about your project. Copy `yourProj
 This file is a simple key-value setting script.
 
 - **CI_UE_HOME** - path to your local Unreal Engine installation
-- **CI_UE_UPROJECT** - the *.uproject* file of your Unreal Engine project
 - **CI_SERVICE_KEY** - see below
 - **CI_PACKAGE_NAME** - same thing as you have filled in your *Project Settings* > *Platforms* > *Android* > *Android Package Name*
 - **CI_PACKAGE_BUNDLE** - path to the file built by Unreal Engine for shipping

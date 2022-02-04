@@ -1,6 +1,5 @@
 @REM Unreal Engine Build
 echo ##CI_UE_HOME=%UE4.26_HOME%#
-echo ##CI_UE_UPROJECT=YourProject.uproject#
 
 @REM Google Play Publishing
 echo ##CI_SERVICE_KEY=CI/google-service-key.json#
