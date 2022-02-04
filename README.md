@@ -16,11 +16,11 @@ Continuous deployment pipelines are sets of scripts and tools helping you get yo
 
 *Ah, OK. Well, my project is still in development, I probably don't need this yet.*
 
-The truth is that you should incorporate a CI/CD pipeline in your project before you start its development. Having your project working in on your local workstation doesn't mean it will be working on your user's device. Believe it or not, the gap between locally working software and software working in a foreign environment is larger than you think. The more changes you make to your project before you test it on the users' devices, the more likely there's going to be an issue. The more issues there will be, the more complex it will get to resolve. Each additional issue to resolve at once will add to the blur of your knowledge about *what worked before*.
+The truth is that if you are serious about the project, you should incorporate a CI/CD pipeline in it before you start its development. Having your project working on your local workstation doesn't mean it will be working on your user's device. Believe it or not, the gap between locally working software and software working in a foreign environment is larger than you think. The more changes you make to your project before you test it on the users' devices, the more likely there's going to be an issue. The more issues there will be, the more complex it will get to resolve. Each additional issue to resolve at once will add to the blur of your knowledge about *what worked before*.
 
 Therefore, professional software developers learned to deploy and test their software in target environments, ideally after each new feature or bug fix. So they always know what worked before and where to look to resolve an issue that may appear.
 
-But in this world of app stores, making an app release may account up to 50% of your time spent on development. Every time you want to make a release of your app, you need to do a sequence of tasks (build, test, pack, upload, fill release info, publish release). This quickly gets repetitive and kills your creative enthusiasm.
+But in this world of app stores, making frequent app releases may account up to 50% of your time spent on development. Every time you want to make a release of your app, you need to do a sequence of tasks (build, test, pack, upload, fill release info, publish release). This quickly gets repetitive and kills your creative enthusiasm.
 
 Fear no more, CI/CD pipelines automate all this stuff for you. Just trigger the red button, grab a coffee, and watch things get done.
 
