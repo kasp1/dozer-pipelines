@@ -1,0 +1,45 @@
+steps:
+#
+# Build
+#
+- displayName: Get Current Version
+  command: git pull
+
+- displayName: NPM Install
+  command: npm i
+
+- displayName: Semantic Release
+  command: npx semantic-release --no-ci --debug
+
+- displayName: Find .uplugin
+  command: node CI/shared/tools/find-file-in-folder.js . "\.uplugin$" CI_UE_UPLUGIN
+
+- displayName: Update Plugin Version
+  command: node CI/shared/tools/unreal/update-uplugin-version.js
+
+# Epic Games Marketplace will only build for the last 3 major releases in the cloud
+# source: https://www.unrealengine.com/en-US/marketplace-guidelines
+
+- displayName: Test Build UE 4.25
+  command: %UE4.25_HOME%\Engine\Build\BatchFiles\RunUAT.bat BuildPlugin -Plugin="%cd%\%CI_UE_UPLUGIN%-testbuild" -Package="%cd%\TestBuild" -Rocket
+
+- displayName: Test Build UE 4.26
+  command: %UE4.26_HOME%\Engine\Build\BatchFiles\RunUAT.bat BuildPlugin -Plugin="%cd%\%CI_UE_UPLUGIN%-testbuild" -Package="%cd%\TestBuild" -Rocket
+
+- displayName: Test Build UE 4.27
+  command: %UE4.27_HOME%\Engine\Build\BatchFiles\RunUAT.bat BuildPlugin -Plugin="%cd%\%CI_UE_UPLUGIN%-testbuild" -Package="%cd%\TestBuild" -Rocket
+
+#
+
+- displayName: Clean Dist
+  skippable: true
+  command: del Distribution\prepared_%CI_VERSION%.zip
+
+- displayName: Zip
+  command: mkdir Distribution & tar.exe -a -c -f Distribution\prepared_%CI_VERSION%.zip 
+    Config
+    Content
+    Resources
+    Source
+    %CI_UE_UPLUGIN%
+    && echo Done. Distribution/prepared_%CI_VERSION%.zip 

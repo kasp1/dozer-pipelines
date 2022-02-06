@@ -8,7 +8,7 @@
   - [Support and Troubleshooting](#support-and-troubleshooting)
 - [Available Scripts and Pipelines](#available-scripts-and-pipelines)
   - [Unreal Engine CI/CD Pipelines](#unreal-engine-cicd-pipelines)
-  - [Discord Tools](#discord-tools)
+  - [Tools](#tools)
 
 ## Are you new to CI/CD?
 
@@ -75,6 +75,8 @@ Please star this repository if you find it helpful.
 * [Unreal Engine to Microsoft Store]([sample-pipelines/google-play](https://forums.unrealengine.com/t/publishing-an-unreal-engine-project-to-microsoft-store/149141)) (possibly uses an outdated Dozer yaml format)
 * [Unreal Engine to Google Play](sample-pipelines/google-play)
 * [Unreal Engine to Steam](sample-pipelines/steam)
+* [Unreal Engine Code Plugin to Unreal Engine Marketplace](sample-pipelines/unreal-marketplace-code-plugin)
 
-## Discord Tools
-* [Sending Messages to a Discord Channel]() (TBD)
+## Tools
+
+TBD
