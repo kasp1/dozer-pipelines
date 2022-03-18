@@ -19,7 +19,7 @@ steps:
   command: node CI/shared/tools/generate-release-number.js
 
 - displayName: Find .uproject
-  command: node CI/shared/tools/unreal/find-uproject.js
+  command: node CI/shared/tools/find-file-in-folder.js . "\.uproject$" CI_UE_UPROJECT
 
 - displayName: Update Project Version
   command: node CI/shared/tools/replace-in-file.js
