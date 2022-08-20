@@ -34,7 +34,6 @@ steps:
     "VersionDisplayName=###CI_VERSION###"
 
 - displayName: Update Android Version Code
-  command: node CI/shared/tools/update-android-version-code.js
   command: node CI/shared/tools/replace-in-file.js
     Config/DefaultEngine.ini
     "^\W*StoreVersion=.+$"
