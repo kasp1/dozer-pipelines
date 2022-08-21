@@ -7,7 +7,7 @@ steps:
   command: CI\vars.bat
 
 - displayName: Get Current Version
-  command: git pull
+  command: git pull & git submodule update --init --recursive
 
 - displayName: NPM Install
   command: npm i
@@ -73,8 +73,7 @@ steps:
     -archivedirectory=%cd%/Distribution
     -package
     -nodebuginfo
-    -target=FamilyGames
 
 - displayName: Publish Google Play Internal
-  command: node CI/shared/tools/upload-android-build.js
+  command: node CI/shared/tools/google-play/upload-android-build.js
 

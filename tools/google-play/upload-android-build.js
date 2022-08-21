@@ -9,8 +9,15 @@ const PACKAGE_BUNDLE = process.env['CI_PACKAGE_BUNDLE']
 const PACKAGE_EXPANSIONS_DIR = process.env['CI_PACKAGE_EXPANSIONS_DIR']
 const TRACK = process.env['CI_DEFAULT_GOOGLEPLAY_TRACK']
 
-
 async function main () {
+
+  console.log('CI_VERSION:', version)
+  console.log('CI_PACKAGE_NAME:', PACKAGE_NAME)
+  console.log('CI_PACKAGE_BUNDLE:', PACKAGE_BUNDLE)
+  console.log('CI_PACKAGE_EXPANSIONS_DIR:', PACKAGE_EXPANSIONS_DIR)
+  console.log('CI_DEFAULT_GOOGLEPLAY_TRACK:', TRACK)
+  console.log('')
+
   console.log('Authenticating with Google APIs...')
 
   const auth = new google.Auth.GoogleAuth({
@@ -47,21 +54,25 @@ async function main () {
 
   console.log('Looking for expansion files...', PACKAGE_EXPANSIONS_DIR)
 
+  let obbUploads = []
+
   fs.readdirSync(PACKAGE_EXPANSIONS_DIR).forEach(file => {
 
     if (file.match(/\.obb$/)) {
       console.log('Uploading expansion file...', file)
 
-      await client.edits.expansionfiles.upload({
+      obbUploads.push(client.edits.expansionfiles.upload({
         editId: editId,
         packageName: PACKAGE_NAME,
         media: {
           body: PACKAGE_EXPANSIONS_DIR + '/' + file,
           mimeType: 'application/octet-stream'
         }
-      })
+      }))
     }
   })
+
+  await Promise.all(obbUploads)
 
   console.log('Publishing the edit on Internal track...')
 
@@ -88,8 +99,4 @@ async function main () {
   console.log('Done.')
 }
 
-try {
-  main()
-} catch (e) {
-  console.log(e)
-}
+main()

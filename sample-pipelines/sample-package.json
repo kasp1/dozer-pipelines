@@ -3,6 +3,7 @@
     "axios": "^0.21.1",
     "basic-ftp": "^4.6.6",
     "conventional-changelog-atom": "^2.0.8",
+    "googleapis": "^107.0.0",
     "recursive-readdir-sync": "^1.0.6",
     "sha1-file": "^3.0.0",
     "xml2json": "^0.12.0"
