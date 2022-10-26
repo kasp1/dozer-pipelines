@@ -113,8 +113,8 @@ This file is a simple key-value setting script.
 - **CI_UE_UPROJECT** - the *.uproject* file of your Unreal Engine project
 - **CI_STEAMGUARD_CLI** - command to run the Steamguard CLI
 - **CI_STEAM_SDA_DIR** - directory where your SDA files are located, usually somewhere under *Steam Desktop Authenticator*'s folder, which you should have set up along with Steamguard CLI.
-- **CI_STEAM_LOGIN** - your upload Steam account's login (use a separate account for uploads)
-- **CI_STEAM_PASSWORD** - your upload Steam account's password
+- **STEAM_LOGIN** - your upload Steam account's login (use a separate account for uploads)
+- **STEAM_PASSWORD** - your upload Steam account's password
 - **CI_STEAM_VDF** - path to the VDF file for use with Content Builder
 - **CI_STEAM_BUILDER_DIR** - path to the Content Builder's directory under Steamworks SDK, e.g. `%STEAMWORKS_SDK_HOME%\\tools\\ContentBuilder\\builder`
 

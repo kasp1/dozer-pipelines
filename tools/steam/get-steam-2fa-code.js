@@ -8,4 +8,4 @@ const SDA = process.env['CI_STEAM_SDA_DIR']
 let code = execSync(`${STEAMGUARD} -m ${SDA}`, { encoding: 'utf8' })
 code = code.trim()
 
-console.log(`##CI_STEAM_2FA_CODE=${code}#`)
+console.log(`##STEAM_2FA_CODE=${code}#`)
