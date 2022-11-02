@@ -72,7 +72,7 @@ Please star this repository if you find it helpful.
 
 ## Unreal Engine CI/CD Pipelines
 
-* [Unreal Engine to Microsoft Store]([sample-pipelines/google-play](https://forums.unrealengine.com/t/publishing-an-unreal-engine-project-to-microsoft-store/149141)) (possibly uses an outdated Dozer yaml format)
+* [Unreal Engine to Microsoft Store](sample-pipelines/microsoft-store)
 * [Unreal Engine to Google Play](sample-pipelines/google-play)
 * [Unreal Engine to Steam](sample-pipelines/steam)
 * [Unreal Engine Code Plugin to Unreal Engine Marketplace](sample-pipelines/unreal-marketplace-code-plugin)
