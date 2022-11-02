@@ -1,0 +1,80 @@
+
+steps:
+#
+# Build
+#
+- title: Set Vars
+  command: CI\vars.bat
+
+- title: Get Current Version
+  command: git pull
+
+- title: NPM Install
+  command: npm i
+
+- title: Semantic Release
+  command: npx semantic-release --no-ci --debug
+
+# - title: Find .uproject
+#   command: node CI/shared/tools/find-file-in-folder.js . "\.uproject$" CI_UE_UPROJECT
+
+# - title: Update Project Version
+#   command: node CI/shared/tools/replace-in-file.js
+#     Config/DefaultGame.ini
+#     "^\W*ProjectVersion=.+$"
+#     "ProjectVersion=${CI_VERSION}"
+
+# Uncomment this step if C++ project
+# - displayName: Generate Visual Studio Files
+#   command: node CI/shared/tools/unreal/generate-visual-studio-project.js
+
+# Uncomment this step if C++ project, add `C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE` to Path for `devenv` to work
+# - displayName: Build Editor
+#   command: devenv %CI_UE_SLN% /Build "Development Editor|Win64"
+
+# - title: Build Client
+#   command: echo "Building Client" && %CI_UE_HOME%\Engine\Build\BatchFiles\RunUAT.bat
+#     -ScriptsForProject=%cd%/%CI_UE_UPROJECT%
+#     BuildCookRun
+#     -project=%cd%/%CI_UE_UPROJECT%
+#     -unrealexe=%CI_UE_HOME%\Engine\Binaries\Win64\UnrealEditor-Cmd.exe
+#     -noP4
+#     -clientconfig=Shipping
+#     -serverconfig=Shipping
+#     -nocompile
+#     -nocompileeditor
+#     -installed
+#     -utf8output
+#     -platform=Win64
+#     -cook
+#     -map=
+#     -unversionedcookedcontent
+#     -pak
+#     -createreleaseversion=
+#     -distribution
+#     -compressed
+#     -prereqs
+#     -archivedirectory=%cd%/Distribution/Windows
+#     -stage
+#     -package
+#     -build
+#     -iterate
+
+- title: Copy Resources
+  command: if not exist Distribution\Windows\assets mkdir Distribution\Windows\assets && 
+    copy ${MSIX_RESOURCES}\${MSIX_LOGO_44} Distribution\Windows\assets\${MSIX_LOGO_44} && 
+    copy ${MSIX_RESOURCES}\${MSIX_LOGO_150} Distribution\Windows\assets\${MSIX_LOGO_150} && 
+    copy ${MSIX_RESOURCES}\${MSIX_APPLOGO} Distribution\Windows\assets\${MSIX_APPLOGO}
+
+- title: Create App Manifest
+  command: node CI/shared/tools/replace-known-vars-in-file.js CI\shared\sample-pipelines\microsoft-store\AppxManifest-template.xml Distribution\Windows\AppxManifest.xml
+
+- title: Create PRI Config
+  command: cd Distribution\Windows && makepri createconfig /cf priconfig.xml /dq en-US /o
+
+- title: Create Resource List
+  command: cd Distribution\Windows && makepri new /pr . /cf priconfig.xml /o
+
+- title: Package as MSIX
+  command: del Distribution\Windows\*.msix &&
+    makeappx pack /o /d Distribution\Windows /p Distribution\Windows\${APP_NAME}_${CI_VERSION}_${PUBLISHER_FAMILY}.msix

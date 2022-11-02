@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities">
+  <Identity Name="${PUBLISHER_ACCOUNT}.${APP_NAME}" Version="${CI_VERSION}.0" Publisher="CN=${PUBLISHER_UUID}" ProcessorArchitecture="x64" />
+  <Properties>
+    <DisplayName>${APP_NAME}</DisplayName>
+    <PublisherDisplayName>${PUBLISHER}</PublisherDisplayName>
+    <Description>${APP_DESCRIPTION}</Description>
+    <Logo>assets\${MSIX_APPLOGO}</Logo>
+  </Properties>
+  <Resources>
+    <Resource Language="en-us" />
+  </Resources>
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17135.0" MaxVersionTested="10.0.19045.0" />
+  </Dependencies>
+  <Capabilities>
+    <rescap:Capability Name="runFullTrust"/>
+  </Capabilities>
+  <Applications>
+    <Application Id="${APP_NAME}" Executable="${MSIX_EXE}" EntryPoint="Windows.FullTrustApplication">
+      <uap:VisualElements BackgroundColor="#${MSIX_BGCOLOR_HEX}" DisplayName="${APP_NAME}" Square150x150Logo="assets\${MSIX_LOGO_150}" Square44x44Logo="assets\${MSIX_LOGO_44}" Description="${APP_DESCRIPTION}" />
+    </Application>
+  </Applications>
+</Package>
