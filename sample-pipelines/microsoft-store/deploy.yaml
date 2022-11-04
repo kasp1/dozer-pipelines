@@ -61,7 +61,7 @@ steps:
     -iterate
 
 - title: Copy Resources
-  command: if not exist Distribution\Windows\assets mkdir Distribution\Windows\assets && 
+  command: (if not exist Distribution\Windows\assets mkdir Distribution\Windows\assets) && 
     copy ${MSIX_RESOURCES}\${MSIX_LOGO_44} Distribution\Windows\assets\${MSIX_LOGO_44} && 
     copy ${MSIX_RESOURCES}\${MSIX_LOGO_150} Distribution\Windows\assets\${MSIX_LOGO_150} && 
     copy ${MSIX_RESOURCES}\${MSIX_APPLOGO} Distribution\Windows\assets\${MSIX_APPLOGO}
