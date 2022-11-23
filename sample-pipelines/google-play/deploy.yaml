@@ -25,19 +25,19 @@ steps:
   command: node CI/shared/tools/replace-in-file.js
     Config/DefaultGame.ini
     "^\W*ProjectVersion=.+$"
-    "ProjectVersion=###CI_VERSION###"
+    "ProjectVersion=${CI_VERSION}"
 
 - displayName: Update Android Version
   command: node CI/shared/tools/replace-in-file.js
     Config/DefaultEngine.ini
     "^\W*VersionDisplayName=.+$"
-    "VersionDisplayName=###CI_VERSION###"
+    "VersionDisplayName=${CI_VERSION}"
 
 - displayName: Update Android Version Code
   command: node CI/shared/tools/replace-in-file.js
     Config/DefaultEngine.ini
     "^\W*StoreVersion=.+$"
-    "StoreVersion=###CI_RELEASE_ID###"
+    "StoreVersion=${CI_VERSION}"
 
 - displayName: Copy Keystore
   command: copy .\CI\*.keystore .\Build\Android\
@@ -46,7 +46,7 @@ steps:
   command: del /S /Q Distribution\*
 
 - displayName: Build Game Android
-  command: %CI_UE_HOME%\Engine\Build\BatchFiles\RunUAT.bat
+  command: echo "Building for Android..." && %CI_UE_HOME%\Engine\Build\BatchFiles\RunUAT.bat
     -ScriptsForProject=%cd%/%CI_UE_UPROJECT%
     BuildCookRun
     -project=%cd%/%CI_UE_UPROJECT%

@@ -1,6 +1,7 @@
 # Continuous Deployment Pipelines (CI/CD) with Dozer
 
 - [Continuous Deployment Pipelines (CI/CD) with Dozer](#continuous-deployment-pipelines-cicd-with-dozer)
+  - [Sponsored By](#sponsored-by)
   - [Are you new to CI/CD?](#are-you-new-to-cicd)
   - [Why Dozer?](#why-dozer)
   - [How to use this repo? (and Contribute?)](#how-to-use-this-repo-and-contribute)
@@ -9,6 +10,13 @@
 - [Available Scripts and Pipelines](#available-scripts-and-pipelines)
   - [Unreal Engine CI/CD Pipelines](#unreal-engine-cicd-pipelines)
   - [Tools](#tools)
+
+
+## Sponsored By
+
+[![](resources/sponsors/hosting-lads.png)](https://discord.gg/q3ah7nkMHF)
+
+[![](resources/sponsors/nextkind.png)](https://nextkind.org)
 
 ## Are you new to CI/CD?
 

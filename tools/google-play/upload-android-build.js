@@ -52,27 +52,27 @@ async function main () {
     }
   })
 
-  console.log('Looking for expansion files...', PACKAGE_EXPANSIONS_DIR)
+  // console.log('Looking for expansion files...', PACKAGE_EXPANSIONS_DIR)
 
-  let obbUploads = []
+  // let obbUploads = []
 
-  fs.readdirSync(PACKAGE_EXPANSIONS_DIR).forEach(file => {
+  // fs.readdirSync(PACKAGE_EXPANSIONS_DIR).forEach(file => {
 
-    if (file.match(/\.obb$/)) {
-      console.log('Uploading expansion file...', file)
+  //   if (file.match(/\.obb$/)) {
+  //     console.log('Uploading expansion file...', file)
 
-      obbUploads.push(client.edits.expansionfiles.upload({
-        editId: editId,
-        packageName: PACKAGE_NAME,
-        media: {
-          body: PACKAGE_EXPANSIONS_DIR + '/' + file,
-          mimeType: 'application/octet-stream'
-        }
-      }))
-    }
-  })
+  //     obbUploads.push(client.edits.expansionfiles.upload({
+  //       editId: editId,
+  //       packageName: PACKAGE_NAME,
+  //       media: {
+  //         body: PACKAGE_EXPANSIONS_DIR + '/' + file,
+  //         mimeType: 'application/octet-stream'
+  //       }
+  //     }))
+  //   }
+  // })
 
-  await Promise.all(obbUploads)
+  // await Promise.all(obbUploads)
 
   console.log('Publishing the edit on Internal track...')
 
