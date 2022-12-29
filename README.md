@@ -72,7 +72,7 @@ Preferably, [create a new issue](https://github.com/kasp1/dozer-pipelines/issues
 
 You can also try searching in the issues. Chances are somebody already faced the same problems as you do at the moment.
 
-...or come to Discord: https://discord.gg/JvXm7peT
+...or come to Discord: https://discord.gg/TwnpfKVzGH
 
 Please star this repository if you find it helpful.
 
