@@ -2,44 +2,47 @@ steps:
 #
 # Build
 #
-- displayName: Get Current Version
-  command: git pull
+- title: Get Current Version
+  command: git pull && git submodule update --init --recursive
 
-- displayName: NPM Install
+- title: NPM Install
   command: npm i
 
-- displayName: Semantic Release
+- title: Semantic Release
   command: npx semantic-release --no-ci --debug
 
-- displayName: Find .uplugin
+- title: Find .uplugin
   command: node CI/shared/tools/find-file-in-folder.js . "\.uplugin$" CI_UE_UPLUGIN
 
-- displayName: Update Plugin Version
-  command: node CI/shared/tools/unreal/update-uplugin-version.js
+- title: Update Plugin Version
+  command: node CI/shared/tools/replace-in-file.js
+    ${CI_UE_UPLUGIN}
+    "(?<=\"VersionName\":\\W\").+(?=\")"
+    "${CI_VERSION}"
 
 # Epic Games Marketplace will only build for the last 3 major releases in the cloud
 # source: https://www.unrealengine.com/en-US/marketplace-guidelines
 
-- displayName: Test Build UE 4.25
-  command: %UE4.25_HOME%\Engine\Build\BatchFiles\RunUAT.bat BuildPlugin -Plugin="%cd%\%CI_UE_UPLUGIN%-testbuild" -Package="%cd%\TestBuild" -Rocket
+# - title: Test Build UE 5.0
+#   command: ${UE5.0_HOME}\Engine\Build\BatchFiles\RunUAT.bat BuildPlugin -Plugin="%cd%\${CI_UE_UPLUGIN}" -Package="%cd%\TestBuild\testbuild-UE50"
 
-- displayName: Test Build UE 4.26
-  command: %UE4.26_HOME%\Engine\Build\BatchFiles\RunUAT.bat BuildPlugin -Plugin="%cd%\%CI_UE_UPLUGIN%-testbuild" -Package="%cd%\TestBuild" -Rocket
+# - title: Test Build UE 5.1
+#   command: ${UE5.1_HOME}\Engine\Build\BatchFiles\RunUAT.bat BuildPlugin -Plugin="%cd%\${CI_UE_UPLUGIN}" -Package="%cd%\TestBuild\testbuild-UE51"
 
-- displayName: Test Build UE 4.27
-  command: %UE4.27_HOME%\Engine\Build\BatchFiles\RunUAT.bat BuildPlugin -Plugin="%cd%\%CI_UE_UPLUGIN%-testbuild" -Package="%cd%\TestBuild" -Rocket
+- title: Test Build UE 5.2
+  command: ${UE5.2_HOME}\Engine\Build\BatchFiles\RunUAT.bat BuildPlugin -Plugin="%cd%\${CI_UE_UPLUGIN}" -Package="%cd%\TestBuild\testbuild-UE52"
 
-#
-
-- displayName: Clean Dist
+- title: Clean Dist
   skippable: true
-  command: del Distribution\prepared_%CI_VERSION%.zip
+  command: del Distribution\prepared_${CI_VERSION}.zip
 
-- displayName: Zip
-  command: mkdir Distribution & tar.exe -a -c -f Distribution\prepared_%CI_VERSION%.zip 
+# Zip Up for UE Marketplace
+
+- title: Zip
+  command: mkdir Distribution & tar.exe -a -c -f Distribution\prepared_${CI_VERSION}.zip 
     Config
     Content
     Resources
     Source
     %CI_UE_UPLUGIN%
-    && echo Done. Distribution/prepared_%CI_VERSION%.zip 
+    && echo Done. Distribution/prepared_${CI_VERSION}.zip 
