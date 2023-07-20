@@ -3,17 +3,22 @@
 //
 // Can be file or directory.
 //
+// Escape @ with %40
+// Escape : with %3A
+//
 
 import Client from 'ftp-client'
 import fs from 'fs'
 import path from 'path'
 
 const info = {
-  host: process.argv[2].split('@')[1].split(':')[0],
-  port: process.argv[2].split('@')[1].split(':')[1],
-  user: process.argv[2].split('@')[0].split(':')[0],
-  password: process.argv[2].split('@')[0].split(':')[1],
+  host: unescape(process.argv[2].split('@')[1].split(':')[0]),
+  port: unescape(process.argv[2].split('@')[1].split(':')[1]),
+  user: unescape(process.argv[2].split('@')[0].split(':')[0]),
+  password: unescape(process.argv[2].split('@')[0].split(':')[1]),
 }
+
+console.log(info)
 
 async function run() {
   const ftp = new Client(info)
@@ -48,6 +53,12 @@ async function run() {
       }
     }
   })
+}
+
+function unescape(str) {
+  str = str.replace(/%40/g, '@')
+  str = str.replace(/%3A/g, ':')
+  return str
 }
 
 run()
