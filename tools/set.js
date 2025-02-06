@@ -16,8 +16,8 @@ export default function setEnvVariable(variable, value) {
   // GitHub Actions
   if (process.env.GITHUB_ACTIONS) {
     try {
-      console.log(`Adding "${variable}=${value}" to $GITHUB_ENV`)
-      execSync(`echo "${variable}=${value}" >> $GITHUB_ENV`, { shell: 'pwsh' })
+      console.log(`Adding "${variable}=${value}" to GITHUB_ENV`)
+      execSync(`echo "${variable}=${value}" >> $GITHUB_ENV`, { shell: 'powershell.exe' })
     } catch (e) {
       console.log(`Error setting the ${variable} variable in GitLab CI: ${e.message}`)
     }
@@ -26,8 +26,8 @@ export default function setEnvVariable(variable, value) {
   // GitLab CI
   else if (process.env.GITLAB_CI) {
     try {
-      console.log(`Adding "${variable}=${value}" to $GITLAB_ENV`)
-      execSync(`echo "${variable}=${value}" >> $GITLAB_ENV`, { shell: 'pwsh' })
+      console.log(`Adding "${variable}=${value}" to GITLAB_ENV`)
+      execSync(`echo "${variable}=${value}" >> $GITHUB_ENV`, { shell: 'powershell.exe' })
     } catch (e) {
       console.log(`Error setting the ${variable} variable in GitLab CI: ${e.message}`)
     }
