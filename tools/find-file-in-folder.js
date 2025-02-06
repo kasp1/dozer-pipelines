@@ -10,6 +10,7 @@
 //
 
 import fs from 'fs'
+import setEnvVariable from './set.js'
 
 const folder = process.argv[2]
 const variable = process.argv[4]
@@ -22,9 +23,9 @@ async function main() {
   let file = findFile(pattern)
 
   if (file) {
-    console.log(`##${variable}=${file}#`)
+    setEnvVariable(variable, file)
   } else {
-    console.log('No file found.')
+    console.log('No matching file name found.')
     process.exit(1)
   }
 }
