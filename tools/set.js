@@ -7,11 +7,7 @@
 // setEnvVariable('VariableName', 'VariableValue')
 //
 // Universal multiplatform way to set environment variables within Dozer,
-// GitHub Actions, and GitLab CI using CMD, PowerShell and Bash/sh.
-//
-// If used as a step directly, in GitHub Actions or GitLab CI, on Windows hosts,
-// this script has to be run under PowerShell (default in both GitHub Actions and 
-// GitLab CI).
+// GitHub Actions, and GitLab CI.
 //
 
 import { execSync } from 'child_process'
@@ -21,7 +17,7 @@ export default function setEnvVariable(variable, value) {
   if (process.env.GITHUB_ACTIONS) {
     try {
       console.log(`Adding "${variable}=${value}" to $GITHUB_ENV`)
-      execSync(`echo "${variable}=${value}" >> $GITHUB_ENV`)
+      execSync(`echo "${variable}=${value}" >> $GITHUB_ENV`, { shell: 'pwsh' })
     } catch (e) {
       console.log(`Error setting the ${variable} variable in GitLab CI: ${e.message}`)
     }
@@ -30,7 +26,8 @@ export default function setEnvVariable(variable, value) {
   // GitLab CI
   else if (process.env.GITLAB_CI) {
     try {
-      execSync(`echo "${variable}=${value}" >> $GITLAB_ENV`)
+      console.log(`Adding "${variable}=${value}" to $GITLAB_ENV`)
+      execSync(`echo "${variable}=${value}" >> $GITLAB_ENV`, { shell: 'pwsh' })
     } catch (e) {
       console.log(`Error setting the ${variable} variable in GitLab CI: ${e.message}`)
     }
