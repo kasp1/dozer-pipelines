@@ -33,7 +33,7 @@ async function run() {
 
         const base = path.dirname(pair[0])
 
-        if (fs.lstatSync(base).isDirectory()) {
+        if (fs.lstatSync(pair[0]).isDirectory()) {
           console.log(`Uploading ${pair[0]}/** to ${pair[1]}`)
 
           ftp.upload(`${pair[0]}/**`, pair[1], {
@@ -44,7 +44,7 @@ async function run() {
           console.log(`Uploading ${pair[0]} to ${pair[1]}`)
 
           ftp.upload(pair[0], pair[1], {
-            baseDir: base,
+            baseDir: path.dirname(pair[0]),
             overwrite: 'all'
           }, (result) => console.log(result))
         }
